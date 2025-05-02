@@ -33,7 +33,7 @@ jobs:
           pytest
 
       - name: Upload all reports
-        uses: actions/upload-artifact@actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: pytest-reports
           path: reports/report_*.html
