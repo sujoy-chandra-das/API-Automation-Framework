@@ -30,8 +30,8 @@ jobs:
 
       - name: Run tests and save logs
         run: |
-          mkdir -p logs
-          pytest > logs/test_log.txt
+          mkdir -p Logs
+          pytest | tee Logs/test_log.txt
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
@@ -43,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-logs
-          path: logs/test_log.txt
+          path: Logs/test_log.txt
