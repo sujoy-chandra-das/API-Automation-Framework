@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v3
         with:
           python-version: '3.13.3'
 
@@ -28,12 +28,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run tests and save log
         run: |
-          pytest
+          mkdir -p logs
+          pytest --tb=short --maxfail=5 > logs/test_log.txt
+          echo "Tests complete. Log saved to logs/test_log.txt"
 
-      - name: Upload all reports
-        uses: actions/upload-artifact@v4
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v3
         with:
-          name: pytest-reports
-          path: reports/report_*.html
+          name: pytest-html-report
+          path: reports/*.html
+
+      - name: Upload Test Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-logs
+          path: Logs/test_log.txt
