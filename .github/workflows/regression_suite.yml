@@ -28,20 +28,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests and save log
+      - name: Run tests and save logs
         run: |
           mkdir -p logs
-          pytest --tb=short --maxfail=5 > logs/test_log.txt
-          echo "Tests complete. Log saved to logs/test_log.txt"
+          pytest > logs/test_log.txt
 
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v3
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
         with:
-          name: pytest-html-report
+          name: pytest-report
           path: reports/*.html
 
-      - name: Upload Test Logs
-        uses: actions/upload-artifact@v3
+      - name: Upload test logs
+        uses: actions/upload-artifact@v4
         with:
-          name: pytest-logs
-          path: Logs/test_log.txt
+          name: test-logs
+          path: logs/test_log.txt
