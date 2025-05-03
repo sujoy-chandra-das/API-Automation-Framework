@@ -53,25 +53,30 @@ Run all tests and generate an HTML report and coverage report:
 ├── README.md
 └── requirements.txt
 
-Regression_suite.yml
-👉 GitHub Actions workflow file for running CI/CD. It defines steps like installing dependencies, running tests, generating reports, and uploading logs.
+🔧 Core Components
+.github/workflows/regression_suite.yml
+➤ Implemented CI/CD using GitHub Actions. The pipeline installs dependencies, runs automated tests, saves logs (logs/test_log.txt), and generates HTML test reports for every push and pull request to main.
 
 test_data.json
-👉 Stores test input data used in your test scripts, such as mock user information, API payloads, or configurations.src/: Source files including API client and configuration parser.
-tests/: Test cases and fixtures.
+➤ Maintains mock input data for test coverage such as API payloads and expected values. Centralizing this data enables parameterized testing and easier data updates.
 
-test_log.txt
-👉 Captures console output or log details after test execution (especially from pytest > logs/test_log.txt). Useful for debugging and historical tracking.
+Logs/test_log.txt
+➤ Captures execution logs during pytest runs. Configured the pipeline and local execution to redirect console outputs here for better traceability and post-run analysis.
 
-report_*.html
-👉 Automatically generated HTML reports from pytest --html plugin. These are test result summaries for visual review.
+reports/report_*.html
+➤ Integrated pytest-html to auto-generate timestamped test reports. These provide a clean UI for reviewing pass/fail status, captured logs, and metadata.
 
-test_users_api.py
-👉 Main test file with your actual test functions, e.g., API test validations using pytest.
+ 
+🧪 Testing Layer
+tests/test_users_api.py
+➤ Developed test cases for user-related APIs using Pytest. Validated status codes, response payloads, and headers. All tests follow assert-based validations with fixtures from conftest.py.
 
-api_client.py
-👉 Helper functions for sending API requests, managing sessions, or wrapping requests logic. Promotes code reuse and clean test files.
+conftest.py
+➤ Created reusable fixtures for setup/teardown processes, base URL management, and data injection to keep test files DRY and maintainable.
 
+🛠️ Utility Layer
+utils/api_client.py
+➤ Built a custom API client module to handle GET, POST, PUT, and DELETE requests. Wrapped request logic for headers, tokens, and payloads to reduce duplication and improve readability in test scripts.
 
 ### Contributing
 Contributions are welcome! Please submit a pull request or create an issue for any changes or suggestions.
