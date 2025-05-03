@@ -30,29 +30,28 @@ Run all tests and generate an HTML report and coverage report:
 
 ### Directory Structure:
 
-        api-automation-testing-framework/
-        │
-        ├── configurations/
-        │   └── config.ini
-        ├── logs/
-        │   └── test_logs.log
-        ├── src/
-        │   ├── __init__.py
-        │   ├── api_client.py
-        │   └── config_parser.py
-        ├── tests/
-        │   ├── integration_tests/
-        │   │   ├── __init__.py
-        │   │   ├── test_generate_token.py
-        │   │   ├── test_new_booking.py
-        │   │   └── test_update.py
-        │   ├── __init__.py
-        │   └── conftest.py
-        ├── .gitignore
-        ├── README.md
-        ├── run_tests.sh
-        ├── pytest.ini
-        └── requirements.txt
+       api-automation-framework/
+├── .github/
+│   └── workflows/
+│       └── regression_suite.yml
+├── .venv/
+├── data/
+│   └── test_data.json
+├── Logs/
+│   └── test_log.txt
+├── reports/
+│   ├── report_2025-05-02_13-33-44.html
+│   └── report_2025-05-02_19-35-02.html
+├── tests/
+│   ├── reports/
+│   └── test_users_api.py
+├── utils/
+│   └── api_client.py
+├── venv/
+├── conftest.py
+├── pytest.ini
+├── README.md
+└── requirements.txt
 
 configurations/: Configuration files.
 logs/: Log files generated during test runs.
