@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 Running Tests
 Run all tests and generate an HTML report and coverage report:
-        bash run_tests.sh
+        pytest
 
 
 
@@ -53,10 +53,24 @@ Run all tests and generate an HTML report and coverage report:
 ├── README.md
 └── requirements.txt
 
-configurations/: Configuration files.
-logs/: Log files generated during test runs.
-src/: Source files including API client and configuration parser.
+Regression_suite.yml
+👉 GitHub Actions workflow file for running CI/CD. It defines steps like installing dependencies, running tests, generating reports, and uploading logs.
+
+test_data.json
+👉 Stores test input data used in your test scripts, such as mock user information, API payloads, or configurations.src/: Source files including API client and configuration parser.
 tests/: Test cases and fixtures.
+
+test_log.txt
+👉 Captures console output or log details after test execution (especially from pytest > logs/test_log.txt). Useful for debugging and historical tracking.
+
+report_*.html
+👉 Automatically generated HTML reports from pytest --html plugin. These are test result summaries for visual review.
+
+test_users_api.py
+👉 Main test file with your actual test functions, e.g., API test validations using pytest.
+
+api_client.py
+👉 Helper functions for sending API requests, managing sessions, or wrapping requests logic. Promotes code reuse and clean test files.
 
 
 ### Contributing
@@ -64,14 +78,3 @@ Contributions are welcome! Please submit a pull request or create an issue for a
 
 License
 This project is licensed under the MIT License.
-
-
-### `run_tests.sh` Example
-```bash
-#!/bin/bash
-
-# Create reports directory if it doesn't exist
-mkdir -p reports
-
-# Run tests with HTML and coverage report
-pytest --html=reports/test_report.html --cov=src --cov-report=html:reports/coverage_report
